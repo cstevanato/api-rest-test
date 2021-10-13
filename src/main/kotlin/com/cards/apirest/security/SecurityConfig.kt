@@ -68,7 +68,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests()
-            .antMatchers(HttpMethod.POST,"/p/authentication/login").permitAll()
+            .antMatchers("/api/p/authentication/login").permitAll()
             .antMatchers("/api/cards").authenticated()
             .and()
             .httpBasic()

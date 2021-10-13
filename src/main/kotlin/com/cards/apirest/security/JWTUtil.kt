@@ -20,10 +20,11 @@ class JWTUtil {
         return Jwts.builder()
 //            .setClaims(claims)
             .setSubject(username)
-            .setIssuedAt(Date(System.currentTimeMillis()))
-            .setExpiration(Date(System.currentTimeMillis() + expiration))
-            .signWith(SignatureAlgorithm.HS256, secret.toByteArray())
+            .setIssuedAt(Date())
+            .setExpiration(Date(Date().time  + expiration))
+            .signWith(SignatureAlgorithm.HS512, secret.toByteArray())
             .compact()
+
     }
 
     fun isTokenValid(token: String): Boolean {
