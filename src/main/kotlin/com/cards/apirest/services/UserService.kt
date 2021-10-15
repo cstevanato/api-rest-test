@@ -1,8 +1,6 @@
 package com.cards.apirest.services
 
-import com.cards.apirest.domain.LoginRequestObject
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import com.cards.apirest.models.LoginRequestObject
 import org.springframework.stereotype.Service
 
 @Service

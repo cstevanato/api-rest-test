@@ -27,7 +27,10 @@ jar.enabled = false
 
 dependencies {
 	implementation ("org.springframework.boot:spring-boot-starter-security")
+	implementation ("org.springframework.boot:spring-boot-starter-data-mongodb")
 	implementation ("io.jsonwebtoken:jjwt:0.9.1")
+	implementation ("javax.validation:validation-api:2.0.1.Final")
+
 
 	implementation ("javax.xml.bind:jaxb-api:2.3.1")
 

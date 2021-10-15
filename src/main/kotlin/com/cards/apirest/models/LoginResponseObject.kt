@@ -1,4 +1,4 @@
-package com.cards.apirest.domain
+package com.cards.apirest.models
 
 data class LoginResponseObject(
     //@SerializedName("userId") 

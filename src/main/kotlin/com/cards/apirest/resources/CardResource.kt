@@ -1,8 +1,9 @@
 package com.cards.apirest.resources
 
-import com.cards.apirest.domain.Card
-import com.cards.apirest.domain.LoginRequestObject
-import com.cards.apirest.domain.LoginResponseObject
+import com.cards.apirest.models.Card
+import com.cards.apirest.models.LoginRequestObject
+import com.cards.apirest.models.LoginResponseObject
+import com.cards.apirest.repository.CardRepository
 import com.cards.apirest.security.JWTUtil
 import com.cards.apirest.services.UserDetailsServiceImpl
 import com.cards.apirest.services.UserService
@@ -10,7 +11,6 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
-import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.*
@@ -33,23 +33,23 @@ class CardResource {
     @Autowired
     private lateinit var authenticationManager: AuthenticationManager
 
+    @Autowired
+    private lateinit var cardRepository: CardRepository
+
     @GetMapping("/cards")
     fun cards(): List<Card> {
-        return listOf(
-            Card("1234", "Refeição"),
-            Card("5678", "Alimentação")
-        )
+        return cardRepository.findAll()
+    }
+
+    @PostMapping("/cards")
+    fun addCards(@RequestBody card: Card): Card {
+        return cardRepository.save(card)
     }
 
     @RequestMapping(value = ["/p/authentication/login"], method = [RequestMethod.POST])
     fun login(@RequestBody loginRequest: LoginRequestObject): ResponseEntity<LoginResponseObject> {
 
         logger.info(loginRequest.toString())
-
-//        val userDetails = userDetailsService.loadUserByUsername(loginRequest.cpf)
-//        if (!(userDetails.password.equals(loginRequest.password) && userDetails.username.equals(loginRequest.cpf))) {
-//            throw Exception("Incorrect username or password")
-//        }
 
         try {
             val authReq = UsernamePasswordAuthenticationToken("foo", "foo")
