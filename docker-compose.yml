@@ -12,5 +12,15 @@ services:
   mongo_db:
     image: "mongo:4.4.3"
     restart: always
+    container_name: mongodb
     ports:
       - 27017:27017
+
+
+
+#    networks:
+#      - mongo-compose-network
+#
+#networks:
+#  mongo-compose-network:
+#    driver: bridge

@@ -31,6 +31,7 @@ dependencies {
 	implementation ("io.jsonwebtoken:jjwt:0.9.1")
 	implementation ("javax.validation:validation-api:2.0.1.Final")
 
+//	implementation ("org.mongodb:bson:3.11.3")
 
 	implementation ("javax.xml.bind:jaxb-api:2.3.1")
 
@@ -42,8 +43,11 @@ dependencies {
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-	compileOnly("org.projectlombok:lombok:1.18.20")
-	annotationProcessor("org.projectlombok:lombok:1.18.20")
+	// Migração de Mongo
+//	implementation ("io.mongock:mongock-standalone:5.0.21.RC")
+	implementation ("io.mongock:mongock-springboot:5.0.19.RC")
+	implementation("io.mongock:mongodb-springdata-v3-driver:5.0.19.RC")
+
 }
 
 tasks.withType<KotlinCompile> {
